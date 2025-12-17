@@ -39,7 +39,6 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
   useEffect(() => {
     if (!user) return;
 
-    // Subscribe to real-time task updates
     const unsubscribe = subscribeToTasks(user.uid, (fetchedTasks) => {
       setTasks(fetchedTasks);
       setLoading(false);
@@ -48,11 +47,9 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
     return () => unsubscribe();
   }, [user]);
 
-  // Apply filter, search, and sort whenever any of these change
   useEffect(() => {
     let result = filterTasks(tasks, filter);
     
-    // Apply search filter
     if (searchQuery.trim()) {
       result = result.filter((task) => {
         const searchLower = searchQuery.toLowerCase();
@@ -143,7 +140,6 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
         ) : null}
       </View>
 
-      {/* Filter Tabs */}
       <View style={styles.filterContainer}>
         {(['all', 'active', 'completed'] as const).map((f) => (
           <TouchableOpacity
@@ -166,7 +162,6 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
         ))}
       </View>
 
-      {/* Sort Options */}
       <View style={styles.sortContainer}>
         <Text style={styles.sortLabel}>Sort by:</Text>
         <View style={styles.sortButtonsRow}>
@@ -192,7 +187,6 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
         </View>
       </View>
 
-      {/* Task List - Now Scrollable */}
       <FlatList
         data={filteredTasks}
         keyExtractor={(item) => item.id}
@@ -228,7 +222,6 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
         )}
       />
 
-      {/* Floating Action Button */}
       <TouchableOpacity
         onPress={() => navigation.navigate('AddTask', {})}
         style={styles.fab}

@@ -36,7 +36,6 @@ export const TaskForm: React.FC<TaskFormProps> = ({
     initialData?.priority || 'medium'
   );
 
-  // Date picker modal states
   const [showDateTimeModal, setShowDateTimeModal] = useState(false);
   const [showDeadlineModal, setShowDeadlineModal] = useState(false);
   const [activePickerType, setActivePickerType] = useState<'dateTime' | 'deadline' | null>(null);
@@ -106,7 +105,6 @@ export const TaskForm: React.FC<TaskFormProps> = ({
     return styles.priorityTextActive;
   };
 
-  // Generate time slots (every 30 minutes)
   const generateTimeSlots = () => {
     const slots = [];
     for (let hour = 0; hour < 24; hour++) {
@@ -119,7 +117,6 @@ export const TaskForm: React.FC<TaskFormProps> = ({
     return slots;
   };
 
-  // Generate date range (next 30 days)
   const generateDateRange = () => {
     const dates = [];
     const today = new Date();
@@ -220,7 +217,6 @@ export const TaskForm: React.FC<TaskFormProps> = ({
         />
       </View>
 
-      {/* Date & Time Picker Modal */}
       <Modal
         visible={showDateTimeModal}
         transparent={true}
@@ -239,7 +235,6 @@ export const TaskForm: React.FC<TaskFormProps> = ({
               </TouchableOpacity>
             </View>
 
-            {/* Date Selection */}
             <View style={styles.pickerSection}>
               <Text style={styles.pickerLabel}>Date</Text>
               <FlatList
@@ -289,7 +284,6 @@ export const TaskForm: React.FC<TaskFormProps> = ({
               />
             </View>
 
-            {/* Time Selection */}
             <View style={styles.pickerSection}>
               <Text style={styles.pickerLabel}>Time</Text>
               <FlatList
@@ -332,7 +326,6 @@ export const TaskForm: React.FC<TaskFormProps> = ({
               />
             </View>
 
-            {/* Done Button */}
             <View style={styles.modalFooter}>
               <Button
                 title="Done"

@@ -54,7 +54,6 @@ export const LoginScreen: React.FC<Props> = ({ navigation }) => {
     setLoading(true);
     try {
       await signIn(email, password);
-      // Navigation handled automatically by AuthContext
     } catch (error: any) {
       Alert.alert('Login Failed', error.message);
     } finally {
